@@ -27,8 +27,13 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.dharma</groupId>
+            <artifactId>persistence</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-        
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -53,6 +58,25 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <configuration>
+                    <to>
+                        <image>rowanf/user</image>
+                        <auth>
+                            <username>rowanf</username>
+                            <password>rowm0ng1</password>
+                        </auth>
+                    </to>
+                    <!--                    <container>-->
+                    <!--                        <mainClass>com.learn.ta4j.Ta4jApplication</mainClass>-->
+                    <!--                    </container>-->
+
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
