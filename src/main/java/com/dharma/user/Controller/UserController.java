@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping(value = "/user/user/{userid}")
     public User user(@PathVariable String userid) {
         System.out.println("----------------USER-------" + userid);
-        return userRepo.findOne(QUser.user.userid.eq(userid)).get()
+        return userRepo.findOne(QUser.user.userid.eq(userid)).get();
     }
 
     @PutMapping("/user")
