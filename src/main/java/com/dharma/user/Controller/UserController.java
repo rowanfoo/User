@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,8 +19,23 @@ public class UserController {
     UserRepo userRepo;
     private static ObjectMapper objectMapper = new ObjectMapper();
 
+//    @GetMapping(value = "/user/algo/{userid}")
+//    public JsonNode useralgo(@PathVariable String userid) {
+//        System.out.println("----------------getbydate-------" + userid);
+//
+//        String json = userRepo.findOne(QUser.user.userid.eq(userid)).get().getAlgo();
+//        JsonNode jsonNode = null;
+//        try {
+//            jsonNode = objectMapper.readTree(json);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return jsonNode;
+//    }
+
     @GetMapping(value = "/user/algo/{userid}")
-    public JsonNode useralgo(@PathVariable String userid) {
+    public ResponseEntity<JsonNode> useralgo(@PathVariable String userid) {
         System.out.println("----------------getbydate-------" + userid);
 
         String json = userRepo.findOne(QUser.user.userid.eq(userid)).get().getAlgo();
@@ -28,8 +45,12 @@ public class UserController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return jsonNode;
+        //return new  ResponseEntity<>(jsonNode, HttpStatus.FOUND) ;
+        return new ResponseEntity<>(jsonNode, HttpStatus.OK);
+
+
     }
+
 
     @GetMapping(value = "/user/user/{userid}")
     public User user(@PathVariable String userid) {
