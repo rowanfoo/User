@@ -58,10 +58,28 @@ public class UserController {
         return userRepo.findOne(QUser.user.userid.eq(userid)).get();
     }
 
-    @PutMapping("/user")
-    public void insert(@RequestBody User user) {
-        System.out.println("----insert-------------" + user);
-        userRepo.save(user);
+//    @PutMapping("/user")
+//    public void insert(@RequestBody User user) {
+//        System.out.println("----insert-------------" + user);
+//        userRepo.save(user);
+//    }
+
+
+    @PutMapping("/user/algo/{userid}")
+    public void insert(@PathVariable String userid, @RequestBody JsonNode node) {
+
+        System.out.println("----insert-------------" + node);
+        System.out.println("----insert---------userid----" + userid);
+        User usr = userRepo.findOne(QUser.user.userid.eq(userid)).get();
+        //System.out.println("----insert---------user----" + usr);
+
+        if (usr != null) {
+            usr.setAlgo(node.toPrettyString());
+            userRepo.save(usr);
+        }
+
+//        System.out.println("----insert-------------" + node);
+        //userRepo.save(user);
     }
 
 }
