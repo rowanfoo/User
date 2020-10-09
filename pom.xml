@@ -70,9 +70,9 @@
                             <password>rowm0ng1</password>
                         </auth>
                     </to>
-                    <!--                                        <container>-->
-                    <!--                                            <mainClass>com.learn.ta4j.Ta4jApplication</mainClass>-->
-                    <!--                                        </container>-->
+                    <container>
+                        <mainClass>com.dharma.user.AngularsubmitApplication</mainClass>
+                    </container>
 
                 </configuration>
             </plugin>
