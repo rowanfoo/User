@@ -34,11 +34,17 @@ public class UserController {
 //        return jsonNode;
 //    }
 
+    @GetMapping("/hello")
+    public String root() {
+        return "hello world";
+    }
+
+
     @GetMapping(value = "/user/algo/{userid}")
     public ResponseEntity<JsonNode> useralgo(@PathVariable String userid) {
         System.out.println("----------------getbydate-------" + userid);
 
-        String json = userRepo.findOne(QUser.user.userid.eq(userid)).get().getAlgo();
+        String json = userRepo.findOne(QUser.user.username.eq(userid)).get().getAlgo();
         JsonNode jsonNode = null;
         try {
             jsonNode = objectMapper.readTree(json);
@@ -55,7 +61,7 @@ public class UserController {
     @GetMapping(value = "/user/user/{userid}")
     public User user(@PathVariable String userid) {
         System.out.println("----------------USER-------" + userid);
-        return userRepo.findOne(QUser.user.userid.eq(userid)).get();
+        return userRepo.findOne(QUser.user.username.eq(userid)).get();
     }
 
 //    @PutMapping("/user")
@@ -70,7 +76,7 @@ public class UserController {
 
         System.out.println("----insert-------------" + node);
         System.out.println("----insert---------userid----" + userid);
-        User usr = userRepo.findOne(QUser.user.userid.eq(userid)).get();
+        User usr = userRepo.findOne(QUser.user.username.eq(userid)).get();
         //System.out.println("----insert---------user----" + usr);
 
         if (usr != null) {
