@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: User-deployment
+  namespace: stocks
+  labels:
+    app: User
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: User
+  template:
+    metadata:
+      labels:
+        app: User
+    spec:
+      containers:
+        - name: User
+          image: rowanf/user
+          ports:
+            - containerPort: 8004
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: spring-dbconfig
+---
+
+
